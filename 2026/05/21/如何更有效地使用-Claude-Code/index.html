@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>如何更有效地使用 Claude Code · WFL's Blog</title><meta name="description" content="分享使用 Claude Code 的实用技巧和最佳实践，帮助你更高效地完成日常开发工作。"><meta name="og:description" content="分享使用 Claude Code 的实用技巧和最佳实践，帮助你更高效地完成日常开发工作。"><meta name="twitter:site" content="WFL's Blog"><meta name="twitter:title" content="如何更有效地使用 Claude Code"><meta name="twitter:card" content="summary"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style-dark.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head><body><div class="container" id="stage"><div class="row"><div class="col-sm-3 col-xs-12 side-container invisible" id="side-bar"><div class="vertical-text site-title"><h3 class="site-title-small" tabindex="-1"><a class="a-title" href="/">Hello World</a></h3><h1 class="site-title-large" tabindex="-1"><a class="a-title" href="/">WFL's Blog</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div class="site-title-links" id="site-nav"><ul><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li class="soc"><a href="https://github.com/svenq" target="_blank" rel="noopener noreferrer" aria-label="Github"><i class="fa fa-github">&nbsp;</i></a><a href="https://svenq.github.io/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://svenq.github.io" rel="noopener noreferrer">WFL</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div class="col-sm-9 col-xs-12 main-container invisible" id="main-container"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>如何更有效地使用 Claude Code</a></p><p class="post-meta"><span class="date meta-item">发布于&nbsp;2026-05-21</span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a class="a-tag" href="/tags/Claude-Code/" title="Claude Code">Claude Code</a><span>&nbsp;</span><a class="a-tag" href="/tags/AI/" title="AI">AI</a><span>&nbsp;</span><a class="a-tag" href="/tags/效率工具/" title="效率工具">效率工具</a><span>&nbsp;</span><a class="a-tag" href="/tags/开发工具/" title="开发工具">开发工具</a><span>&nbsp;</span></span></p><p class="post-abstract"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Claude Code 是 Anthropic 推出的命令行 AI 编程助手，它不仅仅是一个代码补全工具，更是一个能够理解项目上下文、自主完成复杂任务的智能搭档。用了几个月之后，我总结了一些让 Claude Code 发挥最大效用的方法。</p>
+<h2 id="1-写好-CLAUDE-md-是效率的基石"><a href="#1-写好-CLAUDE-md-是效率的基石" class="headerlink" title="1. 写好 CLAUDE.md 是效率的基石"></a>1. 写好 CLAUDE.md 是效率的基石</h2><p><code>CLAUDE.md</code> 是 Claude Code 进入项目后最先读取的文件，相当于给 AI 的一份”项目入职指南”。写得越好，AI 的表现越精准。</p>
+<p>我推荐的 CLAUDE.md 结构：</p>
+<pre class="line-numbers language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">##</span> 常用命令</span>
+<span class="token title important"><span class="token punctuation">#</span> 以表格形式列出高频命令，AI 可以快速查找</span>
+
+| 命令 | 说明 |
+|------|------|
+| npm run dev | 启动开发服务器 |
+| npm test | 运行所有测试 |
+
+<span class="token title important"><span class="token punctuation">##</span> 项目架构</span>
+<span class="token title important"><span class="token punctuation">#</span> 简述目录结构和技术栈</span>
+
+<span class="token list punctuation">-</span> src/components/ — UI 组件
+<span class="token list punctuation">-</span> src/services/ — API 服务层
+
+<span class="token title important"><span class="token punctuation">##</span> 注意事项</span>
+<span class="token title important"><span class="token punctuation">#</span> 列出容易踩坑的地方</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>技巧：</strong> 把”不要做的事”也写进去，比如”不要直接修改 <code>themes/xxx/_config.yml</code>，用项目根目录的替代配置文件”，能有效避免 AI 自作主张。</p>
+<h2 id="2-需求描述要具体，不要模糊"><a href="#2-需求描述要具体，不要模糊" class="headerlink" title="2. 需求描述要具体，不要模糊"></a>2. 需求描述要具体，不要模糊</h2><p>这是使用 AI 工具的通用原则，但在 Claude Code 中尤其重要。因为它真的会按你说的去做——模糊的需求会导致模糊的结果。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 不好的描述</span>
+<span class="token operator">></span> 优化一下这个组件
+
+<span class="token comment" spellcheck="true"># 好的描述</span>
+<span class="token operator">></span> 把 UserList 组件中的搜索功能改为防抖 300ms，
+<span class="token operator">></span> 并在搜索时显示 loading 状态，用 Suspense 包裹
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>技巧：</strong> 用”文件路径 + 具体行为 + 约束条件”的三段式描述，几乎总能得到符合预期的结果。</p>
+<h2 id="3-善用权限系统，减少打断"><a href="#3-善用权限系统，减少打断" class="headerlink" title="3. 善用权限系统，减少打断"></a>3. 善用权限系统，减少打断</h2><p>刚上手时每次操作都要点确认，确实有点烦。可以渐进式地配置权限：</p>
+<ul>
+<li>对于 <code>git status</code>、<code>git diff</code>、<code>npm test</code> 等只读或安全的命令，设为 <code>allow</code></li>
+<li>对于 <code>git push</code>、<code>npm publish</code>、<code>rm -rf</code> 等高风险操作，保持 <code>ask</code> 或设为 <code>deny</code></li>
+<li>对于 <code>git commit</code>，视项目情况决定</li>
+</ul>
+<p>配置文件在 <code>.claude/settings.json</code>：</p>
+<pre class="line-numbers language-json"><code class="language-json">&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token property">"permissions"</span><span class="token operator">:</span> &amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token property">"npm test"</span><span class="token operator">:</span> <span class="token string">"allow"</span><span class="token punctuation">,</span>
+    <span class="token property">"npx hexo server"</span><span class="token operator">:</span> <span class="token string">"allow"</span>
+  &amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="4-充分利用斜杠命令"><a href="#4-充分利用斜杠命令" class="headerlink" title="4. 充分利用斜杠命令"></a>4. 充分利用斜杠命令</h2><p>几个经常被忽略但很好用的命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/compact</code></td>
+<td>对话太长、上下文快满时，压缩释放 token</td>
+</tr>
+<tr>
+<td><code>/review</code></td>
+<td>PR 提交前自检代码质量</td>
+</tr>
+<tr>
+<td><code>/verify</code></td>
+<td>改完代码后，启动项目验证功能是否真的生效</td>
+</tr>
+<tr>
+<td><code>/init</code></td>
+<td>新项目快速生成 CLAUDE.md 骨架</td>
+</tr>
+<tr>
+<td><code>/run</code></td>
+<td>一句话启动项目，自动识别项目类型</td>
+</tr>
+</tbody></table>
+<p><strong>技巧：</strong> 养成改完代码后跑 <code>/verify</code> 的习惯，AI 会启动应用并在浏览器中确认效果，比自己手动测快得多。</p>
+<h2 id="5-把重复的工作交给-Skill"><a href="#5-把重复的工作交给-Skill" class="headerlink" title="5. 把重复的工作交给 Skill"></a>5. 把重复的工作交给 Skill</h2><p>如果你经常做某种操作——比如每天写日报、每次部署前跑一堆检查——可以创建或安装 Skill。</p>
+<p>举个例子，我安装了 <code>daily-report</code> skill 之后，每天下班前只需要：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">/daily-report
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>它就会自动收集当天的 git 提交、文件变更，生成结构化的日报。省去了手动翻 git log 和回忆今天干了什么的麻烦。</p>
+<p>你也可以用 <code>skill-creator</code> 来创建自己的专属 Skill。</p>
+<h2 id="6-复杂任务先进入计划模式"><a href="#6-复杂任务先进入计划模式" class="headerlink" title="6. 复杂任务先进入计划模式"></a>6. 复杂任务先进入计划模式</h2><p>面对多文件重构、新增功能模块等复杂任务，不要直接让 AI 开写。先触发计划模式（AI 在不确定时会自动进入，也可以主动说”先不用写代码，给我一个方案”），让它：</p>
+<ol>
+<li>先探索相关代码</li>
+<li>给出实现方案</li>
+<li>你审阅确认</li>
+<li>再开始编码</li>
+</ol>
+<p>这样做的好处是：<strong>你审批的是方案，不是代码</strong>。方案阶段改方向成本极低，代码写完了再改就费劲了。</p>
+<h2 id="7-用记忆系统减少重复交代"><a href="#7-用记忆系统减少重复交代" class="headerlink" title="7. 用记忆系统减少重复交代"></a>7. 用记忆系统减少重复交代</h2><p>遇到过这种情况吗——每次新建会话都要重新解释项目背景？</p>
+<p>Claude Code 的记忆系统就是为这件事设计的：</p>
+<pre><code>&gt; 记住：我们的 API 使用 JWT 认证，token 有效期 24 小时，
+&gt; 刷新 token 的接口是 POST /auth/refresh
+</code></pre>
+<p>之后在任何会话中，AI 都会带上这段上下文。适合存放：</p>
+<ul>
+<li>项目技术决策的背景原因</li>
+<li>外部系统链接（看板、监控面板等）</li>
+<li>团队约定的编码规范</li>
+</ul>
+<h2 id="8-Agent-并行处理独立任务"><a href="#8-Agent-并行处理独立任务" class="headerlink" title="8. Agent 并行处理独立任务"></a>8. Agent 并行处理独立任务</h2><p>当你有多个互不依赖的任务时，Claude Code 可以并行处理。比如：</p>
+<pre><code>&gt; 同时在以下文件中各添加一个导出函数：
+&gt; - src/utils/format.ts
+&gt; - src/utils/validate.ts
+&gt; - src/utils/cache.ts
+</code></pre>
+<p>AI 会自动分配多个 Agent 并行编辑这三个文件，比串行处理快得多。</p>
+<h2 id="9-让-AI-解释而非猜测"><a href="#9-让-AI-解释而非猜测" class="headerlink" title="9. 让 AI 解释而非猜测"></a>9. 让 AI 解释而非猜测</h2><p>遇到不熟悉的代码时，不要直接让 AI 改，先让它解释：</p>
+<pre><code>&gt; 解释一下 src/middleware/auth.ts 的认证流程，用中文
+</code></pre>
+<p>理解之后再决定要不要改、怎么改。这样既学了代码，又避免了 AI 在不完全理解业务逻辑的情况下乱改。</p>
+<h2 id="10-版本控制是安全网"><a href="#10-版本控制是安全网" class="headerlink" title="10. 版本控制是安全网"></a>10. 版本控制是安全网</h2><p>Claude Code 虽然强大，但不是每次都能一次做对。我习惯：</p>
+<ul>
+<li>改代码前确保工作区是干净的（<code>git status</code> 无未提交文件）</li>
+<li>每个独立任务完成后单独 commit</li>
+<li>出问题时用 <code>git diff</code> 查看 AI 改了哪些，做到心中有数</li>
+</ul>
+<p>这样即使 AI 方向跑偏了，一个 <code>git checkout -- .</code> 就能回到安全状态。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>用好 Claude Code 的关键不在于掌握多少命令，而在于：</p>
+<ol>
+<li><strong>写好 CLAUDE.md</strong>——这是投入产出比最高的一件事</li>
+<li><strong>学会写清楚需求</strong>——把 AI 当同事，而不是读心术大师</li>
+<li><strong>建立自己的工作流</strong>——Skill + 斜杠命令 + 记忆系统配合使用</li>
+<li><strong>保持人对代码的控制权</strong>——AI 是加速器，不是替代品</li>
+</ol>
+<p>用这些方法之后，我的日常开发效率提升了大概 3-5 倍——而且最爽的是，把那些机械重复的事情交给 AI，自己可以专注于真正需要思考的设计和决策。</p>
+</p></div><div class="share"><span>分享到</span>&nbsp;<span class="soc"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></span><span class="soc"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></span><span class="soc"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=https://svenq.github.io/2026/05/21/如何更有效地使用-Claude-Code/%20WFL's Blog%20如何更有效地使用 Claude Code"></a></span></div><div class="pagination"><p class="clearfix"></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2026&nbsp;<a target="_blank" href="https://svenq.github.io" rel="noopener noreferrer">WFL</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
